@@ -230,7 +230,11 @@ def plot_waterfall(data, start, duration,
     # Set up axes
     if interactive:
         fig = plt.figure()
-        fig.canvas.set_window_title("Frequency vs. Time")
+        # the below works for older matplotlib (e.g. 3.3.0, but not 3.6.0).
+        try:
+            fig.canvas.set_window_title("Frequency vs. Time")
+        except:
+            pass
 
     im_width = 0.6 if integrate_spec else 0.8
     im_height = 0.6 if integrate_ts else 0.8
